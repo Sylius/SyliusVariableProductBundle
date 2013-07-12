@@ -18,6 +18,7 @@
 
     <parameters>
         <parameter key="sylius.generator.variant.class">Sylius\Bundle\VariableProductBundle\Generator\VariantGenerator</parameter>
+        <parameter key="sylius.resolver.conflict.class">Sylius\Bundle\VariableProductBundle\Generator\ConflictResolver</parameter>
 
         <parameter key="sylius.validator.variant.unique.class">Sylius\Bundle\VariableProductBundle\Validator\VariantUniqueValidator</parameter>
         <parameter key="sylius.validator.variant.combination.class">Sylius\Bundle\VariableProductBundle\Validator\VariantCombinationValidator</parameter>
@@ -31,9 +32,12 @@
     </parameters>
 
     <services>
+        <service id="sylius.resolver.conflict" class="%sylius.resolver.conflict.class%" />
+
         <service id="sylius.generator.variant" class="%sylius.generator.variant.class%">
             <argument type="service" id="validator" />
             <argument type="service" id="sylius.repository.variant"/>
+            <argument type="service" id="sylius.resolver.conflict"/>
         </service>
 
         <service id="sylius.validator.variant.unique" class="%sylius.validator.variant.unique.class%">

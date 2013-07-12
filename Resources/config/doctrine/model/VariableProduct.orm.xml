@@ -18,7 +18,7 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
 
-    <mapped-superclass name="Sylius\Bundle\VariableProductBundle\Model\VariableProduct" table="sylius_product">
+    <entity name="Sylius\Bundle\VariableProductBundle\Model\VariableProduct" table="sylius_product">
 
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
@@ -37,6 +37,6 @@
             </join-table>
         </many-to-many>
 
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

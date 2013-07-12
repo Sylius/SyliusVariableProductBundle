@@ -94,4 +94,33 @@ interface OptionInterface extends TimestampableInterface
      * @return Boolean
      */
     public function hasValue(OptionValueInterface $optionValue);
+
+    /**
+     * @param DependencyInterface[] $dependentValues
+     * @return Option
+     */
+    public function setDependentValues($dependentValues);
+
+    /**
+     * @return DependencyInterface[]
+     */
+    public function getDependentValues();
+
+    /**
+     * @param DependencyInterface $dependency
+     * @return mixed
+     */
+    public function addDependentValue(DependencyInterface $dependency);
+
+    /**
+     * @param DependencyInterface $dependency
+     * @return mixed
+     */
+    public function removeDependentValue(DependencyInterface $dependency);
+
+    /**
+     * @param DependencyInterface $dependency
+     * @return mixed
+     */
+    public function hasDependentValue(DependencyInterface $dependency);
 }
