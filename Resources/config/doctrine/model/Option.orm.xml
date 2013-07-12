@@ -18,7 +18,10 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
 
-    <mapped-superclass name="Sylius\Bundle\VariableProductBundle\Model\Option" table="sylius_option">
+    <entity name="Sylius\Bundle\VariableProductBundle\Model\Option" table="sylius_option">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
         <field name="name" column="name" type="string" />
         <field name="presentation" column="presentation" type="string" />
         <field name="createdAt" column="created_at" type="datetime">
@@ -30,6 +33,8 @@
 
         <one-to-many field="values" target-entity="Sylius\Bundle\VariableProductBundle\Model\OptionValueInterface" mapped-by="option"/>
 
-    </mapped-superclass>
+        <one-to-many field="dependentValues" target-entity="Sylius\Bundle\VariableProductBundle\Model\DependencyInterface" mapped-by="option"/>
+
+    </entity>
 
 </doctrine-mapping>

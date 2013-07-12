@@ -60,6 +60,7 @@ class SyliusVariableProductExtension extends Extension
 
         $loader->load(sprintf('driver/%s.xml', $driver));
         $loader->load('options.xml');
+        $loader->load('variant.xml');
     }
 
     /**
