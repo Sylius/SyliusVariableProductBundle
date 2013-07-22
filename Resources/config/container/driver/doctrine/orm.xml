@@ -20,8 +20,9 @@
         <parameter key="sylius.repository.variant.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
         <parameter key="sylius.repository.option.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
         <parameter key="sylius.repository.option_value.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
-
         <parameter key="sylius.form.type.option_choice.class">Sylius\Bundle\VariableProductBundle\Form\Type\OptionEntityChoiceType</parameter>
+        <parameter key="sylius.repository.dependency.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="sylius.repository.conflict.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
     <services>
@@ -64,6 +65,34 @@
                         class="Doctrine\ORM\Mapping\ClassMetadata"
                         >
                     <argument>%sylius.model.option_value.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <service id="sylius.manager.conflict" alias="doctrine.orm.entity_manager" />
+        <service id="sylius.repository.conflict" class="%sylius.repository.conflict.class%">
+            <argument type="service" id="sylius.manager.conflict" />
+            <argument type="service">
+                <service
+                    factory-service="doctrine.orm.default_entity_manager"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata"
+                    >
+                    <argument>%sylius.model.conflict.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <service id="sylius.manager.dependency" alias="doctrine.orm.entity_manager"/>
+        <service id="sylius.repository.dependency" class="%sylius.repository.dependency.class%">
+            <argument type="service" id="sylius.manager.dependency" />
+            <argument type="service">
+                <service
+                    factory-service="doctrine.orm.default_entity_manager"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata"
+                    >
+                    <argument>%sylius.model.dependency.class%</argument>
                 </service>
             </argument>
         </service>

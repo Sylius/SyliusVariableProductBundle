@@ -61,4 +61,91 @@ interface OptionValueInterface
      * @return string The presentation of object
      */
     public function getPresentation();
+
+    /**
+     * @param Conflict[] $conflicts
+     * @return OptionValue
+     */
+    public function setConflictedValues($conflicts);
+
+    /**
+     * @return Conflict[]
+     */
+    public function getConflictedValues();
+
+    /**
+     * @param ConflictInterface $conflict
+     * @return bool
+     */
+    public function addConflictedValue(ConflictInterface $conflict);
+
+    /**
+     * @param ConflictInterface $conflict
+     * @return mixed
+     */
+    public function removeConflictedValue(ConflictInterface $conflict);
+
+    /**
+     * @param ConflictInterface $conflict
+     * @return mixed
+     */
+    public function hasConflictedValue(ConflictInterface $conflict);
+
+    /**
+     * @param Conflict[] $conflicts
+     * @return OptionValue
+     */
+    public function setConflictValues($conflicts);
+
+    /**
+     * @return Conflict[]
+     */
+    public function getConflictValues();
+
+    /**
+     * @param ConflictInterface $conflict
+     * @return bool
+     */
+    public function addConflictValue(ConflictInterface $conflict);
+
+    /**
+     * @param ConflictInterface $conflict
+     * @return mixed
+     */
+    public function removeConflictValue(ConflictInterface $conflict);
+
+    /**
+     * @param ConflictInterface $conflict
+     * @return mixed
+     */
+    public function hasConflictValue(ConflictInterface $conflict);
+
+    /**
+     * @param DependencyInterface[] $dependencies
+     * @return OptionValue
+     */
+    public function setDependencies($dependencies);
+
+    /**
+     * @return DependencyInterface[]
+     */
+    public function getDependencies();
+
+    /**
+     * @param DependencyInterface $dependency
+     * @return mixed
+     */
+    public function addDependency(DependencyInterface $dependency);
+
+    /**
+     * @param DependencyInterface $dependency
+     * @return mixed
+     */
+    public function removeDependency(DependencyInterface $dependency);
+
+    /**
+     * @param DependencyInterface $dependency
+     * @return mixed
+     */
+    public function hasDependency(DependencyInterface $dependency);
 }
