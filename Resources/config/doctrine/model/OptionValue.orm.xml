@@ -23,11 +23,18 @@
             <generator strategy="AUTO" />
         </id>
 
+        <field name="value" column="value" type="string" />
+
+        <one-to-many field="dependencies" target-entity="Sylius\Bundle\VariableProductBundle\Model\DependencyInterface" mapped-by="optionValue"/>
+
+        <one-to-many field="conflictedValues" target-entity="Sylius\Bundle\VariableProductBundle\Model\ConflictInterface" mapped-by="source"/>
+
+        <one-to-many field="conflictValues" target-entity="Sylius\Bundle\VariableProductBundle\Model\ConflictInterface" mapped-by="target"/>
+
         <many-to-one field="option" target-entity="Sylius\Bundle\VariableProductBundle\Model\OptionInterface" inversed-by="values">
             <join-column name="option_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
 
-        <field name="value" column="value" type="string" />
     </mapped-superclass>
 
 </doctrine-mapping>

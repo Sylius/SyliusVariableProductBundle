@@ -45,15 +45,33 @@ class VariantGenerator implements VariantGeneratorInterface
     protected $variantRepository;
 
     /**
+     * Conflict resolver
+     *
+     * @var ResolverInterface
+     */
+    protected $conflictResolver;
+
+    /**
+     * Dependency resolver
+     *
+     * @var ResolverInterface
+     */
+    protected $dependencyResolver;
+
+    /**
      * Constructor.
      *
      * @param ValidatorInterface $validator
      * @param ObjectRepository   $variantRepository
+     * @param ResolverInterface $conflictResolver
+     * @param ResolverInterface $dependencyResolver
      */
-    public function __construct(ValidatorInterface $validator, ObjectRepository $variantRepository)
+    public function __construct(ValidatorInterface $validator, ObjectRepository $variantRepository, ResolverInterface $conflictResolver, ResolverInterface $dependencyResolver)
     {
         $this->validator = $validator;
         $this->variantRepository = $variantRepository;
+        $this->conflictResolver = $conflictResolver;
+        $this->dependencyResolver = $dependencyResolver;
     }
 
     /**
@@ -76,6 +94,8 @@ class VariantGenerator implements VariantGeneratorInterface
         }
 
         $permutations = $this->getPermutations($optionSet);
+        $permutations = $this->conflictResolver->resolve($permutations, $optionMap, $product);
+        $permutations = $this->dependencyResolver->resolve($permutations, $optionMap, $product);
 
         foreach ($permutations as $i => $permutation) {
             $variant = $this->variantRepository->createNew();
@@ -110,6 +130,7 @@ class VariantGenerator implements VariantGeneratorInterface
      */
     protected function getPermutations($array, $recursing = false)
     {
+
         $countArrays = count($array);
 
         if (1 === $countArrays) {

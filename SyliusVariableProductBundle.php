@@ -45,6 +45,8 @@ class SyliusVariableProductBundle extends Bundle
             'Sylius\Bundle\VariableProductBundle\Model\VariantInterface'     => 'sylius.model.variant.class',
             'Sylius\Bundle\VariableProductBundle\Model\OptionInterface'      => 'sylius.model.option.class',
             'Sylius\Bundle\VariableProductBundle\Model\OptionValueInterface' => 'sylius.model.option_value.class',
+            'Sylius\Bundle\VariableProductBundle\Model\DependencyInterface'     => 'sylius.model.dependency.class',
+            'Sylius\Bundle\VariableProductBundle\Model\ConflictInterface'     => 'sylius.model.conflict.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('sylius_product', $interfaces));

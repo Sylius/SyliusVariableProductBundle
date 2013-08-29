@@ -66,12 +66,18 @@ class Option implements OptionInterface
     protected $updatedAt;
 
     /**
+     * @var DependencyInterface[]|ArrayCollection
+     */
+    protected $dependentValues;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
         $this->values = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->dependentValues = new ArrayCollection();
     }
 
     /**
@@ -212,5 +218,47 @@ class Option implements OptionInterface
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDependentValues($dependentValues)
+    {
+        $this->dependentValues = $dependentValues;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDependentValues()
+    {
+        return $this->dependentValues;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addDependentValue(DependencyInterface $dependency)
+    {
+        return $this->dependentValues->add($dependency);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeDependentValue(DependencyInterface $dependency)
+    {
+        return $this->dependentValues->remove($dependency);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasDependentValue(DependencyInterface $dependency)
+    {
+        return $this->dependentValues->contains($dependency);
     }
 }
